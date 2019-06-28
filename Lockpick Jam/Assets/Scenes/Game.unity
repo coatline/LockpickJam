@@ -1000,6 +1000,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ac109ff95a5dc4fafbdc9763bddf2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxRotationSpeed: 300
+  rotationSpeed: 150
+  moveSpeed: 1.5
   jumpHeight: 150
 --- !u!50 &667294108
 Rigidbody2D:

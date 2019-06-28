@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] float maxRotationSpeed;
+    [SerializeField] float rotationSpeed;
+    [SerializeField] float moveSpeed;
     [SerializeField] float jumpHeight;
     Animator a;
     Rigidbody2D rb;
@@ -23,7 +26,23 @@ public class Player : MonoBehaviour
     {
         var x = Input.GetAxisRaw("Horizontal");
 
-        rb.velocity = new Vector2(x, rb.velocity.y);
+        rb.angularVelocity -= x * rotationSpeed;
+
+        rb.angularVelocity = Mathf.Clamp(rb.angularVelocity, -maxRotationSpeed, maxRotationSpeed);
+
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
 
         if (Input.GetButtonDown("Jump") && canJump)
         {
